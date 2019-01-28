@@ -8,6 +8,8 @@
 
 import UIKit
 
+var userSession: String!
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if let session = UserDefaults.standard.string(forKey: "userSession") {
+            userSession = session
+        } else {
+            Network.shared.postSession { (session) in
+                UserDefaults.standard.set(session, forKey: "userSession")
+                userSession = session
+            }
+        }
+        
         return true
     }
 

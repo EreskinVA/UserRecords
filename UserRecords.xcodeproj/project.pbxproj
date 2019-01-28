@@ -15,6 +15,9 @@
 		2B7276B421FE65BC0002D52D /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276B321FE65BC0002D52D /* DetailVC.swift */; };
 		2B7276B621FE66C80002D52D /* ListRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276B521FE66C80002D52D /* ListRecordsTableViewCell.swift */; };
 		2B7276B821FE6FA40002D52D /* RecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276B721FE6FA40002D52D /* RecordVC.swift */; };
+		2B7276BA21FE89B00002D52D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276B921FE89B00002D52D /* Session.swift */; };
+		2B7276DA21FF22AE0002D52D /* ListRecordsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276D921FF22AE0002D52D /* ListRecordsUser.swift */; };
+		2B7276E121FF293F0002D52D /* Managers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276E021FF293F0002D52D /* Managers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		2B7276B321FE65BC0002D52D /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		2B7276B521FE66C80002D52D /* ListRecordsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRecordsTableViewCell.swift; sourceTree = "<group>"; };
 		2B7276B721FE6FA40002D52D /* RecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVC.swift; sourceTree = "<group>"; };
+		2B7276B921FE89B00002D52D /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		2B7276D921FF22AE0002D52D /* ListRecordsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRecordsUser.swift; sourceTree = "<group>"; };
+		2B7276E021FF293F0002D52D /* Managers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +66,60 @@
 		2B72769E21FE55F60002D52D /* UserRecords */ = {
 			isa = PBXGroup;
 			children = (
-				2B72769F21FE55F60002D52D /* AppDelegate.swift */,
-				2B7276A321FE55F60002D52D /* Main.storyboard */,
-				2B7276B721FE6FA40002D52D /* RecordVC.swift */,
-				2B7276B121FE5FEE0002D52D /* ListRecordsTVC.swift */,
-				2B7276B521FE66C80002D52D /* ListRecordsTableViewCell.swift */,
-				2B7276B321FE65BC0002D52D /* DetailVC.swift */,
-				2B7276A621FE55F70002D52D /* Assets.xcassets */,
-				2B7276A821FE55F70002D52D /* LaunchScreen.storyboard */,
-				2B7276AB21FE55F70002D52D /* Info.plist */,
+				2B7276E221FF29440002D52D /* Global */,
+				2B7276DB21FF28570002D52D /* Model */,
+				2B7276DC21FF28690002D52D /* View */,
+				2B7276DD21FF287B0002D52D /* Controller */,
+				2B7276DE21FF28BF0002D52D /* Supporting Files */,
 			);
 			path = UserRecords;
+			sourceTree = "<group>";
+		};
+		2B7276DB21FF28570002D52D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2B7276B921FE89B00002D52D /* Session.swift */,
+				2B7276D921FF22AE0002D52D /* ListRecordsUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2B7276DC21FF28690002D52D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2B7276A321FE55F60002D52D /* Main.storyboard */,
+				2B7276A821FE55F70002D52D /* LaunchScreen.storyboard */,
+				2B7276B521FE66C80002D52D /* ListRecordsTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2B7276DD21FF287B0002D52D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2B7276B121FE5FEE0002D52D /* ListRecordsTVC.swift */,
+				2B7276B321FE65BC0002D52D /* DetailVC.swift */,
+				2B7276B721FE6FA40002D52D /* RecordVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2B7276DE21FF28BF0002D52D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2B7276A621FE55F70002D52D /* Assets.xcassets */,
+				2B7276AB21FE55F70002D52D /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2B7276E221FF29440002D52D /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				2B72769F21FE55F60002D52D /* AppDelegate.swift */,
+				2B7276E021FF293F0002D52D /* Managers.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,10 +194,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7276B821FE6FA40002D52D /* RecordVC.swift in Sources */,
+				2B7276DA21FF22AE0002D52D /* ListRecordsUser.swift in Sources */,
 				2B7276B221FE5FEE0002D52D /* ListRecordsTVC.swift in Sources */,
+				2B7276BA21FE89B00002D52D /* Session.swift in Sources */,
 				2B7276A021FE55F60002D52D /* AppDelegate.swift in Sources */,
 				2B7276B621FE66C80002D52D /* ListRecordsTableViewCell.swift in Sources */,
 				2B7276B421FE65BC0002D52D /* DetailVC.swift in Sources */,
+				2B7276E121FF293F0002D52D /* Managers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,9 +346,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FE5WRLEXRE;
-				INFOPLIST_FILE = UserRecords/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/UserRecords/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,9 +365,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FE5WRLEXRE;
-				INFOPLIST_FILE = UserRecords/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/UserRecords/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
