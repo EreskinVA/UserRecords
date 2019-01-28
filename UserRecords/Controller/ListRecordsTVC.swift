@@ -24,20 +24,8 @@ class ListRecordsTVC: UITableViewController {
         
         self.navigationItem.rightBarButtonItem = addButton
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        isConnectedToNetwork()
         
-        guard userSession != nil else { return }
-        
-        let parameters = "&session=\(userSession!)"
-        
-        Network.shared.postListRecords(parameters: parameters) { (arrayRecords) in
-            self.listRecordsArray = arrayRecords
-            print(arrayRecords)
-            self.tableView.reloadData()
-        }
     }
     
     // MARK: - Table view data source
@@ -79,6 +67,41 @@ class ListRecordsTVC: UITableViewController {
             }
         }
         
+    }
+    
+    func isConnectedToNetwork() {
+        if Network.isConnectedToNetwork() == true {
+            let parameters = "&session=" + userSession
+            
+            Network.shared.postListRecords(parameters: parameters) { (arrayRecords) in
+                self.listRecordsArray = arrayRecords
+                self.tableView.reloadData()
+            }
+        } else {
+            let alert = UIAlertController(title: "Соединение с сетью!",
+                                          message: "Проверьте соединение с сетью",
+                                          preferredStyle: .alert)
+            
+            let update = UIAlertAction(title: "Обновить данные",
+                                       style: .default)
+            { [weak self] _ in
+                let parameters = "&session=" + userSession
+                
+                Network.shared.postListRecords(parameters: parameters) { (arrayRecords) in
+                    self!.listRecordsArray = arrayRecords
+                    self!.tableView.reloadData()
+                }
+                
+                Network.shared.postSession { (session) in
+                    UserDefaults.standard.set(session, forKey: "userSession")
+                    userSession = session
+                }
+                self?.isConnectedToNetwork()
+            }
+            
+            alert.addAction(update)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     @objc func addTapped(sender: AnyObject) {

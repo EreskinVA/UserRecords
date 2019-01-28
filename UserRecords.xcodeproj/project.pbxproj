@@ -17,7 +17,7 @@
 		2B7276B821FE6FA40002D52D /* RecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276B721FE6FA40002D52D /* RecordVC.swift */; };
 		2B7276BA21FE89B00002D52D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276B921FE89B00002D52D /* Session.swift */; };
 		2B7276DA21FF22AE0002D52D /* ListRecordsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276D921FF22AE0002D52D /* ListRecordsUser.swift */; };
-		2B7276E121FF293F0002D52D /* Managers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276E021FF293F0002D52D /* Managers.swift */; };
+		2B7276E121FF293F0002D52D /* ManagersNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7276E021FF293F0002D52D /* ManagersNetwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 		2B7276B721FE6FA40002D52D /* RecordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordVC.swift; sourceTree = "<group>"; };
 		2B7276B921FE89B00002D52D /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		2B7276D921FF22AE0002D52D /* ListRecordsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRecordsUser.swift; sourceTree = "<group>"; };
-		2B7276E021FF293F0002D52D /* Managers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Managers.swift; sourceTree = "<group>"; };
+		2B7276E021FF293F0002D52D /* ManagersNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagersNetwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				2B72769F21FE55F60002D52D /* AppDelegate.swift */,
-				2B7276E021FF293F0002D52D /* Managers.swift */,
+				2B7276E021FF293F0002D52D /* ManagersNetwork.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -200,7 +200,7 @@
 				2B7276A021FE55F60002D52D /* AppDelegate.swift in Sources */,
 				2B7276B621FE66C80002D52D /* ListRecordsTableViewCell.swift in Sources */,
 				2B7276B421FE65BC0002D52D /* DetailVC.swift in Sources */,
-				2B7276E121FF293F0002D52D /* Managers.swift in Sources */,
+				2B7276E121FF293F0002D52D /* ManagersNetwork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

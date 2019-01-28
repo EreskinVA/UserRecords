@@ -15,6 +15,10 @@ class DetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        recordTextView.backgroundColor = #colorLiteral(red: 0.900935707, green: 0.900935707, blue: 0.900935707, alpha: 1)
+        recordTextView.layer.borderWidth = 1
+        recordTextView.layer.cornerRadius = 3
+        
         let saveButton: UIBarButtonItem = UIBarButtonItem(title: "Save",
                                                           style: .done,
                                                           target: self,
@@ -35,6 +39,12 @@ class DetailVC: UIViewController {
         
         _ = self.navigationController?.popViewController(animated: true)
 
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        self.view.endEditing(true)
     }
     
 }
