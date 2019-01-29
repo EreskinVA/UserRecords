@@ -62,6 +62,7 @@
                                     <outlet property="da" destination="bQN-pd-gSp" id="9RJ-sR-ei7"/>
                                     <outlet property="dm" destination="4sJ-nf-vpR" id="CmD-gv-bOf"/>
                                     <outlet property="list" destination="VWS-MG-dq5" id="5Er-CY-3ff"/>
+                                    <segue destination="g0F-f7-i0G" kind="show" identifier="viewRecord" id="32z-3b-6SQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -75,7 +76,6 @@
                     </navigationItem>
                     <connections>
                         <segue destination="cyY-Eg-cz2" kind="show" identifier="detail" id="qfd-SG-mdV"/>
-                        <segue destination="g0F-f7-i0G" kind="show" identifier="viewRecord" id="GEw-pd-TD3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zj2-87-QUs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -146,6 +146,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KM3-l0-Wdp">
                                 <rect key="frame" x="16" y="104" width="343" height="658"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>

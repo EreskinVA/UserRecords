@@ -10,7 +10,7 @@ import Foundation
 import SystemConfiguration
 
 class Network {
-    private init() {}
+    init() {}
     static let shared = Network()
     
     private func post(methodAPI: String,
@@ -27,16 +27,11 @@ class Network {
         request.addValue("uUzLyQX-zA-4UqKP2F", forHTTPHeaderField: "token")
         
         let session = URLSession.shared
-        session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-                print(response)
-            }
-            
+        session.dataTask(with: request) { (data, _, _) in
             guard let data = data else { return }
             DispatchQueue.main.async {
                 completion(data)
-            }
-            }.resume()
+            }}.resume()
     }
     
     // Получение ID сессии устройства
@@ -73,18 +68,26 @@ class Network {
     // Проверка есть ли подключение к интернету
     class func isConnectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in()
+        
         zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
-        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
-            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-                zeroSockAddress in SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)}
-        } ) else {
+        
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress,
+            { $0.withMemoryRebound(to: sockaddr.self,
+                                   capacity: 1)
+            {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil,
+                                                       zeroSockAddress)}
+        }) else {
             return false
         }
         var flags : SCNetworkReachabilityFlags = []
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {return false}
+        
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) { return false }
+        
         let isReachable = flags.contains(.reachable)
         let needsConnection = flags.contains(.connectionRequired)
+        
         return (isReachable && !needsConnection)
     }
 }

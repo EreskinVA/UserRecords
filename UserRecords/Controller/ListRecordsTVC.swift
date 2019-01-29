@@ -18,21 +18,20 @@ class ListRecordsTVC: UITableViewController {
         tableView.estimatedRowHeight = 64
         tableView.rowHeight = UITableView.automaticDimension
         
-        let addButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                         target: self,
-                                                         action: #selector(addTapped))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add,
+                                        target: self,
+                                        action: #selector(addTapped))
         
-        self.navigationItem.rightBarButtonItem = addButton
+        navigationItem.rightBarButtonItem = addButton
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         isConnectedToNetwork()
-        
     }
     
     // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listRecordsArray.count
@@ -54,11 +53,6 @@ class ListRecordsTVC: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
-        performSegue(withIdentifier: "viewRecord", sender: nil)
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "viewRecord" {
@@ -71,12 +65,30 @@ class ListRecordsTVC: UITableViewController {
     
     func isConnectedToNetwork() {
         if Network.isConnectedToNetwork() == true {
-            let parameters = "&session=" + userSession
-            
-            Network.shared.postListRecords(parameters: parameters) { (arrayRecords) in
-                self.listRecordsArray = arrayRecords
-                self.tableView.reloadData()
+            if userSession == nil {
+                
+                if let session = UserDefaults.standard.string(forKey: "userSession") {
+                    userSession = session
+                } else {
+                    Network.shared.postSession { (session) in
+                        UserDefaults.standard.set(session, forKey: "userSession")
+                        userSession = session
+                        let parameters = "&session=\(userSession!)"
+                        Network.shared.postListRecords(parameters: parameters) { (arrayRecords) in
+                            self.listRecordsArray = arrayRecords
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            } else {
+                let parameters = "&session=\(userSession!)"
+                
+                Network.shared.postListRecords(parameters: parameters) { (arrayRecords) in
+                    self.listRecordsArray = arrayRecords
+                    self.tableView.reloadData()
+                }
             }
+            
         } else {
             let alert = UIAlertController(title: "Соединение с сетью!",
                                           message: "Проверьте соединение с сетью",
@@ -85,16 +97,20 @@ class ListRecordsTVC: UITableViewController {
             let update = UIAlertAction(title: "Обновить данные",
                                        style: .default)
             { [weak self] _ in
-                let parameters = "&session=" + userSession
+                let parameters = "&session=\(userSession ?? "")"
                 
                 Network.shared.postListRecords(parameters: parameters) { (arrayRecords) in
                     self!.listRecordsArray = arrayRecords
                     self!.tableView.reloadData()
                 }
                 
-                Network.shared.postSession { (session) in
-                    UserDefaults.standard.set(session, forKey: "userSession")
+                if let session = UserDefaults.standard.string(forKey: "userSession") {
                     userSession = session
+                } else {
+                    Network.shared.postSession { (session) in
+                        UserDefaults.standard.set(session, forKey: "userSession")
+                        userSession = session
+                    }
                 }
                 self?.isConnectedToNetwork()
             }
